@@ -1,16 +1,16 @@
 clear all;
 clc
 
-
 %%%%%%-------video input------%%%%%%
 
-obj = VideoReader(['/Users/shubhamkumar/' ...
-    'Desktop/MINI-PROJECT/Drowsiness-Detection/dbase' ...
-    '/head/h6.mp4'],'Tag','My reader object');
+% obj = VideoReader(['/Users/shubhamkumar/' ...
+%     'Desktop/MINI-PROJECT/Drowsiness-Detection/dbase' ...
+%     '/head/h6.mp4'],'Tag','My reader object');
+obj = VideoReader(['/Users/shubhamkumar/Desktop/MINI-PROJECT/sample.mp4'], ...
+    'Tag','My reader object');
 I = read(obj,1);
 rate = obj.FrameRate;
 rate;
-
 
 %%%%%-----working on 1st frame------%%%%%%%%%
 
@@ -39,14 +39,9 @@ im(:,:,2)=I(:,:,2).*segment;
 im(:,:,3)=I(:,:,3).*segment;
 figure,imshow(uint8(im));
 
-
 %--------Calculating the percentage--------------------
 count;
 pixel_count = (count*5)/100;
-
-
-
-
 
 %------------Working on rest frames
 num = 0;
@@ -74,12 +69,10 @@ for t = 2:2:nFrames-1
         end
     end 
     
-    
     im(:,:,1)=I(:,:,1).*segment1;
     im(:,:,2)=I(:,:,2).*segment1;
     im(:,:,3)=I(:,:,3).*segment1;
     figure,imshow(uint8(im))
-    
     
     if count - count1 > pixel_count 
         num = num+1;
